@@ -234,14 +234,13 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
         super.onActivityResult(requestCode, resultCode, data)
 
-        var thumbnail: Bitmap
         if(requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
 
-            Picasso.get().load(imgUri).resize(300, 300).centerCrop().into(avatar)
+            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(avatar)
 
         }else if(requestCode == GALLERY){
             imgUri = data?.getData()
-            Picasso.get().load(imgUri).resize(300, 300).centerCrop().into(avatar)
+            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(avatar)
         }
     }
 
