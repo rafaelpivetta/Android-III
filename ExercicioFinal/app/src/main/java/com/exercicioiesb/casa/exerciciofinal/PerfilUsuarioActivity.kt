@@ -62,8 +62,6 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         val dbFire = FirebaseDatabase.getInstance()
         val usuarioRef = dbFire.getReference()
 
-        val uid = mAuth!!.currentUser!!.uid
-
         usuarioRef.child("usuarios").orderByChild("email").equalTo(mAuth!!.currentUser!!.email).addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot){
@@ -74,6 +72,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
                     edtTelefone.text = Editable.Factory.getInstance().newEditable(usuarioSnapshot.child("telefone").value.toString())
                     key = usuarioSnapshot.key
                     Log.i("Perfilusuario", key)
+                    carregarImagemPadrao()
                 }
 
             }
@@ -88,23 +87,6 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         val it = intent
 
         var email = it.getStringExtra("email")
-
-//        if(usuario != null) {
-//
-//            Log.i("Perfilusuario", "encontrado? "+usuario.email+" "+usuario.senha+" "+usuario.uid.toString())
-//            if(!usuario.nome.isNullOrBlank())
-//                edtNomeUsuario.text = Editable.Factory.getInstance().newEditable(usuario.nome)
-//
-//            if(!usuario.matricula.isNullOrBlank())
-//                edtMatricula.text = Editable.Factory.getInstance().newEditable(usuario.matricula)
-//
-//            if(!usuario.telefone.isNullOrBlank())
-//                edtTelefone.text = Editable.Factory.getInstance().newEditable(usuario.telefone)
-//
-//        }else{
-//            Log.i("Perfilusuario", "não encontrado")
-//        }
-        //Não faz sentido preencher os campos senha e confirma senha nesse momento.
 
         btnSalvar.setOnClickListener{
 
@@ -127,14 +109,13 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             usuario.telefone = edtTelefone.text.toString()
             usuario.email = email
 
-//            val usuarioRef = dbFire.getReference("/usuarios/${UUID.randomUUID()}")
             if(key.equals("")){
                 key = UUID.randomUUID().toString()
             }
             val usuarioRef = dbFire.getReference("/usuarios/${key}")
             usuarioRef.setValue(usuario)
 
-            val montaImagemReferencia = storageReference?.child("fotoPerfilUsusario/${key}.jpg")
+            val montaImagemReferencia = storageReference?.child("fotoPerfilUsuario/${key}.jpg")
 
             val uploadTask = montaImagemReferencia?.putFile(imgUri!!)
 
@@ -143,6 +124,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             }?.addOnSuccessListener { taskSnapshot ->
                 val downloadUrl = taskSnapshot.uploadSessionUri
                 Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_LONG).show()
+                finish()
             }
 
         }
@@ -228,6 +210,20 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         )
 
         return image
+    }
+
+
+    private fun carregarImagemPadrao() {
+        val storage = FirebaseStorage.getInstance()
+
+        val storageReference = storage.getReferenceFromUrl("gs://exerciciofinal-289d5.appspot.com/fotoPerfilUsuario/$key.jpg")
+
+        val height = 100
+        val width = 100
+
+        storageReference.downloadUrl.addOnSuccessListener { uri ->
+            Picasso.get().load(uri.toString()).resize(width, height).centerCrop().into(avatar)
+        }.addOnFailureListener { }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
