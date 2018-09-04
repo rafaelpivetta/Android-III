@@ -20,6 +20,8 @@ data class Usuario (
 
         @ColumnInfo(name = "telefone") var telefone: String = "",
 
+        @ColumnInfo(name = "endereco") var endereco: String = "",
+
         @ColumnInfo(name = "foto") var foto: String = ""
 
 )

@@ -41,7 +41,6 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
     private var CAMERA = 0
     private var GALLERY = 1
-    private var imagemTexto : String = ""
 
 
     companion object{
@@ -70,6 +69,8 @@ class PerfilUsuarioActivity : AppCompatActivity(){
                     edtNomeUsuario.text = Editable.Factory.getInstance().newEditable(usuarioSnapshot.child("nome").value.toString())
                     edtMatricula.text = Editable.Factory.getInstance().newEditable(usuarioSnapshot.child("matricula").value.toString())
                     edtTelefone.text = Editable.Factory.getInstance().newEditable(usuarioSnapshot.child("telefone").value.toString())
+                    edtEndereco.text = Editable.Factory.getInstance().newEditable(usuarioSnapshot.child("endereco").value.toString())
+
                     key = usuarioSnapshot.key
                     Log.i("Perfilusuario", key)
                     carregarImagemPadrao()
@@ -107,6 +108,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             usuario.nome = edtNomeUsuario.text.toString()
             usuario.matricula = edtMatricula.text.toString()
             usuario.telefone = edtTelefone.text.toString()
+            usuario.endereco = edtEndereco.text.toString()
             usuario.email = email
 
             if(key.equals("")){
