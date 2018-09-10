@@ -1,4 +1,4 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.viewscustomizadas
 
 import android.content.Context
 import android.graphics.*
@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.exercicioiesb.casa.exerciciofinal.R
 
 
 class NoticiasView @JvmOverloads constructor(

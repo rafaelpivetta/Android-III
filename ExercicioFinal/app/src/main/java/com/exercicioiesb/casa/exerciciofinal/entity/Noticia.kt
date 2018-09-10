@@ -1,4 +1,4 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.entity
 
 class Noticia {
 

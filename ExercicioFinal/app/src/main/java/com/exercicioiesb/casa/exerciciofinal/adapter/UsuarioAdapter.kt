@@ -66,7 +66,7 @@ class UsuarioAdapter(private val mUsuarioList: List<Usuario>, private val contex
 
         holder.linearLayoutUsuario.setOnClickListener {
             val intent = Intent(context, DetalheNoticiaActivity::class.java)
-            Toast.makeText(context, "Direcionar para chat.", Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, "Direcionar para chat.", Toast.LENGTH_LONG).show()
         }
     }
 

@@ -1,9 +1,10 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.viewscustomizadas
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import com.exercicioiesb.casa.exerciciofinal.R
 
 class DetalheImagemNoticiaView @JvmOverloads constructor(
         context: Context,

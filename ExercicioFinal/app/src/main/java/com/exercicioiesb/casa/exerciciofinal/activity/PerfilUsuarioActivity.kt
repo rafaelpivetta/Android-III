@@ -1,4 +1,4 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.activity
 
 import android.Manifest
 import android.app.Activity
@@ -10,7 +10,6 @@ import com.exercicioiesb.casa.exerciciofinal.entity.Usuario
 import kotlinx.android.synthetic.main.activity_perfilusuario.*
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
@@ -20,16 +19,13 @@ import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.widget.Toast
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
+import com.exercicioiesb.casa.exerciciofinal.R
+import com.exercicioiesb.casa.exerciciofinal.util.Util
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.OnProgressListener
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.util.*

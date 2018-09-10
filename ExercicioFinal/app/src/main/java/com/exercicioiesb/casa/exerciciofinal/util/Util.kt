@@ -1,4 +1,4 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.util
 
 import android.util.Log
 import java.util.regex.Pattern

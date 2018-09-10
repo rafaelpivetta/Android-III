@@ -1,7 +1,8 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.exercicioiesb.casa.exerciciofinal.R
 import kotlinx.android.synthetic.main.activity_detalhe_noticia.*
 
 class DetalheNoticiaActivity : AppCompatActivity() {

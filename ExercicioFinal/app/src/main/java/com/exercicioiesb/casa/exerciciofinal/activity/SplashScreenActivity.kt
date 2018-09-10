@@ -1,4 +1,4 @@
-package com.exercicioiesb.casa.exerciciofinal
+package com.exercicioiesb.casa.exerciciofinal.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,10 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
+import com.exercicioiesb.casa.exerciciofinal.R
 
 class SplashScreenActivity : AppCompatActivity() {
-    private val splashInterval = 5000
+    private val splashInterval = 3500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
