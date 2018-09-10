@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txvTitulo"
+            android:id="@+id/txtTitulo"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
             android:layout_width="match_parent"
@@ -28,29 +28,19 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/txvConteudo"
+            android:id="@+id/txtConteudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="Conteúdo"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txvData"
+            android:id="@+id/txtData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Data"
             android:textSize="15sp"/>
     </LinearLayout>
-
-
-    <!--<ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        app:srcCompat="@drawable/seta"
-        android:id="@+id/imgSeta"
-        android:layout_alignTop="@+id/imgNoticia"
-        android:layout_alignEnd="@+id/txvTitulo"/>-->
-
-
 
 </LinearLayout>

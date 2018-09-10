@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.exercicioiesb.casa.exerciciofinal">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,48 +13,59 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark">
 
-
         <!-- Splash screen -->
         <activity
-            android:name="com.exercicioiesb.casa.exerciciofinal.SplashScreenActivity"
+            android:name=".activity.SplashScreenActivity"
             android:label="@string/app_name"
             android:noHistory="true"
             android:theme="@style/AppTheme.DarkNoAction">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <provider
-            android:authorities="com.example.android.fileprovider"
-            android:name="android.support.v4.content.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
-        </provider>
-
-
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.DarkNoAction"/>
-        <activity android:name=".DetalheNoticiaActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".NovoUsuarioActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".RedefinirSenhaActivity" android:theme="@style/AppTheme.DarkNoAction"/>
-        <activity android:name=".PerfilUsuarioActivity" android:theme="@style/AppTheme.Dark"/>
-
-
-        <!--<activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.DarkNoAction" />
+        <activity
+            android:name=".activity.DetalheNoticiaActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activity.NovoUsuarioActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activity.RedefinirSenhaActivity"
+            android:theme="@style/AppTheme.DarkNoAction" />
+        <activity
+            android:name=".activity.PerfilUsuarioActivity"
+            android:theme="@style/AppTheme.Dark" />
+
+        <!--
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
+
+        <activity android:name=".activity.ListaUsuariosActivity"></activity>
     </application>
 
 </manifest>

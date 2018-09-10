@@ -16,9 +16,9 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".MainActivity">
+            tools:context=".activity.MainActivity">
 
-            <com.exercicioiesb.casa.exerciciofinal.NoticiasView
+            <com.exercicioiesb.casa.exerciciofinal.viewscustomizadas.NoticiasView
                 android:id="@+id/noticiasView"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -30,7 +30,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
 
-            <com.exercicioiesb.casa.exerciciofinal.CarrosselView
+            <com.exercicioiesb.casa.exerciciofinal.viewscustomizadas.CarrosselView
                 android:id="@+id/imgCarrosselView"
                 android:layout_width="100dp"
                 android:layout_height="20dp"

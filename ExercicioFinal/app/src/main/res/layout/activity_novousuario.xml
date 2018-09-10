@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".NovoUsuarioActivity">
+    tools:context=".activity.NovoUsuarioActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".NovoUsuarioActivity">
+        tools:context=".activity.NovoUsuarioActivity">
 
         <!--  Email usuário -->
         <android.support.design.widget.TextInputLayout

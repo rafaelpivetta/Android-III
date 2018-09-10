@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DetalheNoticiaActivity">
+    tools:context=".activity.DetalheNoticiaActivity">
 
-    <com.exercicioiesb.casa.exerciciofinal.DetalheImagemNoticiaView
+    <com.exercicioiesb.casa.exerciciofinal.viewscustomizadas.DetalheImagemNoticiaView
         android:id="@+id/dthImagemNoticia"
         android:layout_width="0dp"
         android:layout_height="170dp"

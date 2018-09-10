@@ -5,10 +5,10 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 
-@Entity(tableName = "usuario")
+//@Entity(tableName = "usuario")
 data class Usuario (
-        @PrimaryKey(autoGenerate = true)
-        var uid: Int = 0,
+//        @PrimaryKey(autoGenerate = true)
+//        var uid: Int = 0,
 
         @ColumnInfo(name = "nome") var nome: String = "",
 
