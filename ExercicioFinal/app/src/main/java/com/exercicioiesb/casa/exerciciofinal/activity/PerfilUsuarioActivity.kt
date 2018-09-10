@@ -46,6 +46,8 @@ class PerfilUsuarioActivity : AppCompatActivity(){
     var mAuth : FirebaseAuth? = null
     var storageReference: StorageReference? = null
     var key : String = ""
+    var imgPadrao : Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,9 +91,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
             val usuario = Usuario()
 
-            val util : Util = Util()
-
-            if(imgUri==null){
+            if( imgUri==null && imgPadrao==false ){
                 Toast.makeText(this, "Selecione uma imagem", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -113,17 +113,20 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             val usuarioRef = dbFire.getReference("/usuarios/${key}")
             usuarioRef.setValue(usuario)
 
-            val montaImagemReferencia = storageReference?.child("fotoPerfilUsuario/${key}.jpg")
+            if( imgUri!=null && imgPadrao!=false ) {
+                val montaImagemReferencia = storageReference?.child("fotoPerfilUsuario/${key}.jpg")
 
-            val uploadTask = montaImagemReferencia?.putFile(imgUri!!)
+                val uploadTask = montaImagemReferencia?.putFile(imgUri!!)
 
-            uploadTask?.addOnFailureListener {
-                Toast.makeText(this, "Não foi possível atualizar a foto do perfil!", Toast.LENGTH_LONG).show()
-            }?.addOnSuccessListener { taskSnapshot ->
-                val downloadUrl = taskSnapshot.uploadSessionUri
-                Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_LONG).show()
-                finish()
+                uploadTask?.addOnFailureListener {
+                    Toast.makeText(this, "Não foi possível atualizar a foto do perfil!", Toast.LENGTH_LONG).show()
+                }?.addOnSuccessListener { taskSnapshot ->
+                    val downloadUrl = taskSnapshot.uploadSessionUri
+                }
             }
+
+            Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_LONG).show()
+            finish()
 
         }
 
@@ -221,6 +224,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
         storageReference.downloadUrl.addOnSuccessListener { uri ->
             Picasso.get().load(uri.toString()).resize(width, height).centerCrop().into(imgAvatar)
+            imgPadrao = true
         }.addOnFailureListener { }
     }
 
@@ -231,10 +235,12 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         if(requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
 
             Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
+            imgPadrao = true
 
         }else if(requestCode == GALLERY){
             imgUri = data?.getData()
             Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
+            imgPadrao = true
         }
     }
 
