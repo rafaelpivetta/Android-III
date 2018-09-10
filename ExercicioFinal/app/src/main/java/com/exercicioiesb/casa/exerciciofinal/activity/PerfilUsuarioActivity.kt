@@ -77,7 +77,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             override fun onCancelled(error: DatabaseError) {}
         })
 
-        avatar.setOnClickListener {
+        imgAvatar.setOnClickListener {
             exibirEscolhaOrigem()
         }
 
@@ -220,7 +220,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         val width = 100
 
         storageReference.downloadUrl.addOnSuccessListener { uri ->
-            Picasso.get().load(uri.toString()).resize(width, height).centerCrop().into(avatar)
+            Picasso.get().load(uri.toString()).resize(width, height).centerCrop().into(imgAvatar)
         }.addOnFailureListener { }
     }
 
@@ -230,11 +230,11 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
         if(requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
 
-            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(avatar)
+            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
 
         }else if(requestCode == GALLERY){
             imgUri = data?.getData()
-            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(avatar)
+            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
         }
     }
 

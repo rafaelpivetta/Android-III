@@ -6,9 +6,9 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.exercicioiesb.casa.exerciciofinal.R
-import com.exercicioiesb.casa.exerciciofinal.R.*
 import com.exercicioiesb.casa.exerciciofinal.adapter.UsuarioAdapter
 import com.exercicioiesb.casa.exerciciofinal.entity.Usuario
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.ArrayList
 
@@ -20,14 +20,18 @@ class ListaUsuariosActivity : AppCompatActivity() {
     private var referenciaFirebase: DatabaseReference? = null
     private var usuario: Usuario? = null
     private var mLayoutManagerTodosUsuarios: LinearLayoutManager? = null
+    private var autenticacao: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_lista_usuarios)
+        setContentView(R.layout.activity_lista_usuarios)
 
         mRecycleViewUsuarios = findViewById(R.id.recycleViewTodosUsuarios) as RecyclerView
         mRecycleViewUsuarios!!.itemAnimator = DefaultItemAnimator()
         mRecycleViewUsuarios!!.layoutManager = LinearLayoutManager(this)
+        autenticacao = FirebaseAuth.getInstance()
+
+        
 
         carregarTodosUsuarios()
     }
@@ -47,11 +51,12 @@ class ListaUsuariosActivity : AppCompatActivity() {
 
                     usuario = postSnapshot.getValue<Usuario>(Usuario::class.java)
 
-                    usuarios!!.add(usuario!!)
+                    if (!autenticacao!!.currentUser!!.email.equals(usuario!!.email)) {
+                        usuarios!!.add(usuario!!)
+                        adapter!!.notifyDataSetChanged()
+                    }
 
                 }
-
-                adapter!!.notifyDataSetChanged()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

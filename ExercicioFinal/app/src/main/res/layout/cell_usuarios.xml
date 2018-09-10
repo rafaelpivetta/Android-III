@@ -13,7 +13,7 @@
 
         <ImageView
             android:layout_margin="10dp"
-            android:id="@+id/imgUsuario"
+            android:id="@+id/imgAvatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/logo_iesb_1"/>

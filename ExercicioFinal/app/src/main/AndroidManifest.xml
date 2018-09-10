@@ -65,7 +65,8 @@
         </activity>
         -->
 
-        <activity android:name=".activity.ListaUsuariosActivity"></activity>
+        <activity android:name=".activity.ListaUsuariosActivity" />
+        <activity android:name=".activity.ChatActivity" />
     </application>
 
 </manifest>
