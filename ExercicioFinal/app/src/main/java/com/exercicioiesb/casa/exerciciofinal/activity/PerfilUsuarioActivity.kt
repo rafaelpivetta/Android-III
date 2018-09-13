@@ -10,6 +10,10 @@ import com.exercicioiesb.casa.exerciciofinal.entity.Usuario
 import kotlinx.android.synthetic.main.activity_perfilusuario.*
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
@@ -27,8 +31,11 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.System.out
 import java.util.*
+import kotlin.text.Typography.degree
 
 
 class PerfilUsuarioActivity : AppCompatActivity(){
@@ -91,7 +98,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
             val usuario = Usuario()
 
-            if( imgUri==null && imgPadrao==false ){
+            if( imgPadrao==false ){
                 Toast.makeText(this, "Selecione uma imagem", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -113,17 +120,18 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             val usuarioRef = dbFire.getReference("/usuarios/${key}")
             usuarioRef.setValue(usuario)
 
-            if( imgUri!=null && imgPadrao!=false ) {
                 val montaImagemReferencia = storageReference?.child("fotoPerfilUsuario/${key}.jpg")
 
-                val uploadTask = montaImagemReferencia?.putFile(imgUri!!)
+                if(imgUri!=null) {
+                    val uploadTask = montaImagemReferencia?.putFile(imgUri!!)
 
-                uploadTask?.addOnFailureListener {
-                    Toast.makeText(this, "Não foi possível atualizar a foto do perfil!", Toast.LENGTH_LONG).show()
-                }?.addOnSuccessListener { taskSnapshot ->
-                    val downloadUrl = taskSnapshot.uploadSessionUri
+                    uploadTask?.addOnFailureListener {
+                        Toast.makeText(this, "Não foi possível atualizar a foto do perfil!", Toast.LENGTH_LONG).show()
+                    }?.addOnSuccessListener { taskSnapshot ->
+                        val downloadUrl = taskSnapshot.uploadSessionUri
+                        imgPadrao = true
+                    }
                 }
-            }
 
             Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_LONG).show()
             finish()
@@ -206,7 +214,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(
                 fileName,
-                ".png",
+                ".jpg",
                 storageDir
         )
 
@@ -234,14 +242,15 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
         if(requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
 
-            Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
+            Picasso.get().load(imgUri).resize(100, 100).centerCrop().rotate(90f).into(imgAvatar)
             imgPadrao = true
 
-        }else if(requestCode == GALLERY){
+        }else if(requestCode == GALLERY && resultCode !=0){
             imgUri = data?.getData()
             Picasso.get().load(imgUri).resize(100, 100).centerCrop().into(imgAvatar)
             imgPadrao = true
         }
+        Log.i("ACAO", requestCode.toString()+" "+resultCode.toString())
     }
 
     private fun deslogar() {
@@ -253,5 +262,4 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         finish()
 
     }
-
 }
